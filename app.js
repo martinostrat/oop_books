@@ -1,5 +1,6 @@
-// UI object
+// UI object & LS object
 const ui = new UI();
+const ls = new LS();
 
 // Selectors
 const bookTable = document.getElementById('bTable');
@@ -16,6 +17,11 @@ function addBook() {
 
     const book = new Book(bookTitle, bookAuthor, bookIsbn);
 
+    // add book to table
     ui.addBook(book);
+    // add book to ls
+    ls.addBook(book);
+
+
 
 }
