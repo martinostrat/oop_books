@@ -8,6 +8,15 @@ const submitBtn = document.getElementById('subBtn');
 
 // Events
 submitBtn.addEventListener('click', addBook);
+document.addEventListener('DOMContentLoaded', getBooksFromLocalStorage);
+
+function getBooksFromLocalStorage() {
+    let books = ls.getData('books');
+    for(let i = 0; i < books.length; i++) {
+        let book = books[i];
+        ui.addBook(book);
+    }
+}
 
 function addBook() {
     // get form input
