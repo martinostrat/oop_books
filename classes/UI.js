@@ -2,12 +2,12 @@ class UI {
     // Helper function to add DOM element
     addUIElement(elementName, classname = '', textContent = '', attributes = {}) {
         const element = document.createElement(elementName);
-        if(classname !== '') {
+        if (classname !== '') {
             element.className = classname;
         }
         element.appendChild(document.createTextNode(textContent));
-        if(Object.keys(attributes).length > 0) {
-            for(let key in attributes) {
+        if (Object.keys(attributes).length > 0) {
+            for (let key in attributes) {
                 element.setAttribute(key, attributes[key]);
             }
         }
@@ -29,12 +29,27 @@ class UI {
         // create <td> element
         let td = this.addUIElement('td');
         // create <a> element
-        const link = this.addUIElement('a', '', 'X', {'href':'#'});
+        const link = this.addUIElement('a', '', 'X', {
+            'href': '#'
+        });
         td.appendChild(link);
         // add td to tr
         tr.appendChild(td);
         // add tr to tbody
         const booksList = document.querySelector('#books-list');
         booksList.appendChild(tr);
+    }
+
+    delBook(event) {
+        // activate event when x is clicked
+        if (event.target.textContent === 'X') {
+            // ask conformation
+            if (confirm('Kindel, et tahate raamatu kustudada?')) {
+                event.target.parentElement.parentElement.remove();
+                let bookISBN = event.target.parentElement.previousElementSibling.textContent;
+                const ls = new LS();
+                ls.delBook(bookISBN);
+            }
+        }
     }
 }

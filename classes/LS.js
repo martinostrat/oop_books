@@ -19,4 +19,20 @@ class LS {
         books.push(book);
         this.setData('books', books);
     }
+
+    delBook(bookISBN) {
+        let books;
+        //check for books in LS
+        if(localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        books.forEach(function (book, index) {
+            if(book.isbn === bookISBN) {
+                books.splice(index, 1)
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
 }

@@ -5,10 +5,12 @@ const ls = new LS();
 // Selectors
 const bookTable = document.getElementById('bTable');
 const submitBtn = document.getElementById('subBtn');
+const booksList = document.getElementById('books-list');
 
 // Events
 submitBtn.addEventListener('click', addBook);
 document.addEventListener('DOMContentLoaded', getBooksFromLocalStorage);
+booksList.addEventListener('click', delBook);
 
 function getBooksFromLocalStorage() {
     let books = ls.getData('books');
@@ -30,7 +32,8 @@ function addBook() {
     ui.addBook(book);
     // add book to ls
     ls.addBook(book);
+}
 
-
-
+function delBook (event) {
+    ui.delBook(event);
 }
